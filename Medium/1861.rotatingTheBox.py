@@ -1,0 +1,16 @@
+class Solution:
+    def rotateTheBox(self, boxGrid: List[List[str]]) -> List[List[str]]:
+        r = len(boxGrid)
+        c = len(boxGrid[0])
+        rotate = [['.']*r for _ in range(c)]
+
+        for i, row in enumerate(boxGrid):
+            bottom = c-1
+            for j in range(c-1, -1, -1):
+                if row[j] == "#":
+                    rotate[bottom][r-1-i] = "#"
+                    bottom -= 1
+                elif row[j] == "*":
+                    rotate[j][r-1-i] = "*"
+                    bottom = j-1
+        return rotate
